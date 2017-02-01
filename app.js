@@ -5,11 +5,11 @@ angular.module('myApp', [
 
         // Initialize Firebase
         var config = {
-            apiKey: "AIzaSyBluvox6OLp-Q16Sxy7hnIDBZJmu4XjcDg",
-            authDomain: "test-b41d8.firebaseapp.com",
-            databaseURL: "https://test-b41d8.firebaseio.com",
-            storageBucket: "test-b41d8.appspot.com",
-            messagingSenderId: "201973087892"
+            apiKey: "AIzaSyAhV8qputTImKp3Z5DwwpUmT8lyNRktCfc",
+            authDomain: "palfinder-6d55f.firebaseapp.com",
+            databaseURL: "https://palfinder-6d55f.firebaseio.com",
+            storageBucket: "palfinder-6d55f.appspot.com",
+            messagingSenderId: "673459070337"
         };
         firebase.initializeApp(config);
     })
