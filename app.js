@@ -27,11 +27,18 @@ angular.module('myApp', [
         //get the coordinates data from the database to populate the map
         userRef.on("child_added", function(snapshot, prevChildKey) {
             var position = snapshot.val();
-            $scope.positions.push({latitude: position.coordinates.latitude, longitude: position.coordinates.longitude});
+            $scope.positions.push({userId: position.userId, latitude: position.coordinates.latitude, longitude: position.coordinates.longitude});
             console.log($scope.positions);
         });
         userRef.on("child_changed", function(snapshot) {
-            console.log(snapshot.val());
+            var position = (snapshot.val());
+            for (var i = 0; i < $scope.positions.length; i ++) {
+              if ($scope.positions[i].userId = $scope.user.userId) {
+                $scope.positions[i].latitude = position.coordinates.latitude;
+                $scope.positions[i].longitude = position.coordinates.longitude;
+                console.log($scope.positions[i]);
+              }
+            }
         });
         $scope.register = function (){
             Auth.$createUserWithEmailAndPassword($scope.username, $scope.password).then(function (user){
@@ -62,7 +69,8 @@ angular.module('myApp', [
             console.log(coordinates);
             userId = $scope.user.userId;
             firebase.database().ref('users/' + userId).set({
-                coordinates : coordinates
+                coordinates : coordinates,
+                userId: userId
             });
         }
 
