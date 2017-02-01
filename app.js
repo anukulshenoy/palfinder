@@ -29,7 +29,6 @@ angular.module('myApp', [
             var position = snapshot.val();
             $scope.positions.push({latitude: position.coordinates.latitude, longitude: position.coordinates.longitude});
             console.log($scope.positions);
-            console.log(prevChildKey);
         });
         userRef.on("child_changed", function(snapshot) {
             console.log(snapshot.val());
@@ -51,7 +50,8 @@ angular.module('myApp', [
                 authCtrl.error = error;
                 console.log(error);
             })
-
+            //grab the users current location
+            //populate the map
         }
 
         $scope.coordinates = {};
