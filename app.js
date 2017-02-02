@@ -1,3 +1,5 @@
+
+
 var app = angular.module('myApp', [
 'ngRoute', 'firebase', 'ngGeolocation', 'ngMap'
 ]);
@@ -11,16 +13,41 @@ app.config(function ($routeProvider, $httpProvider) {
         databaseURL: "https://palfinder-6d55f.firebaseio.com",
         storageBucket: "palfinder-6d55f.appspot.com",
         messagingSenderId: "673459070337"
-    };
+      };
     firebase.initializeApp(config);
 });
 
+
 app.factory('databaseAndAuth', function($window, $geolocation, NgMap, $firebaseArray){
     var factory = {};
+    factory.users = {};
     factory.auth = firebase.auth();
     factory.database = firebase.database();
-    factory.userRef = factory.database.ref('users');
+    // factory.userRef = factory.database.ref('users');
+    factory.userRef = firebase.database().ref();
     return factory;
+});
+
+app.run(function(databaseAndAuth, $rootScope) {
+    databaseAndAuth.userRef.on('child_changed', function(snapshot) {
+        console.log(snapshot.key);
+        console.log(snapshot.val());
+        databaseAndAuth.users[snapshot.key] = snapshot.val();
+        $rootScope = databaseAndAuth.users;
+    });
+
+    databaseAndAuth.userRef.on('child_added', function(snapshot) {
+        console.log(snapshot.key);
+        console.log(snapshot.val());
+        databaseAndAuth.users[snapshot.key] = snapshot.val();
+        $rootScope = databaseAndAuth.users;
+    });
+
+    databaseAndAuth.userRef.on('child_removed', function(snapshot) {
+        console.log(snapshot.key);
+        console.log(snapshot.val());
+    });
+
 });
 
 app.controller('registerLogInLogOut', function($scope, databaseAndAuth){
@@ -52,7 +79,6 @@ app.controller('registerLogInLogOut', function($scope, databaseAndAuth){
             $scope.$apply(function() {
                 $scope.loggedIn = false;
             });
-
         }
     });
 });
@@ -123,22 +149,23 @@ app.controller('registerLogInLogOut', function($scope, databaseAndAuth){
 //     }
 // });
 
-app.controller('initializeMap', function($scope, databaseAndAuth, NgMap){
-
-    NgMap.getMap().then(function(map) {
-        console.log(map.setCenter());
-        console.log('markers', map.markers);
-        console.log('shapes', map.shapes);
+app.controller('initializeMap', function($rootScope, databaseAndAuth, NgMap){
+    //$rootScope.userLocations = databaseAndAuth.users;
+    $rootScope.$watch('userLocations', function() {
+            alert('hey, myVar has changed!');
     });
-});
-    //when the device position changes, update the database;
-app.controller('watchCurrentUserLocation', function($window, $scope, databaseAndAuth){
-    // $geolocation.watchPosition(function(position) {
-    //     $scope.coordinates.latitude = position.latitude;
-    //     $scope.coordinates.longitude = position.longitude;
+    
+    NgMap.getMap().then(function(map) {
+        // console.log(map.setCenter());
+        // console.log('markers', map.markers);
+        // console.log('shapes', map.shapes);
+    });
+    
 
-    //     $scope.writeUserData(userId, $scope.coordinates);
-    // });
+});
+
+app.controller('watchCurrentUserLocation', function($window, $scope, databaseAndAuth){
+
     var success = function (response) {
         console.log('success! ', response.coords);
         $window.coordinates = response.coords;
@@ -154,4 +181,5 @@ app.controller('watchCurrentUserLocation', function($window, $scope, databaseAnd
     };
     navigator.geolocation.watchPosition(success, error, options);
 });
+
 

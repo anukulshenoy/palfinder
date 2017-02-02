@@ -24,15 +24,7 @@
     </form>
   </div>
 <!--  
-  <div ng-controller="logInExistingUser"> 
-    <form>
-      <div class="form-group">
-        <input type="text" ng-model="existingUser" placeholder="username">
-        <input type="text" ng-model="existingUserPassword" placeholder="password">
-        <button class="btn btn-primary" type="submit" ng-click="signIn()">Login</button>
-      </div>
-    </form>
-  </div>
+
 
   <div ng-controller="manuallyAddCoordinates"> 
     <form>
@@ -43,9 +35,10 @@
   </div> -->
 
   <div ng-controller="initializeMap">
+    <!-- <div ng-repeat="(key, value) in userLocations"><span>{{key}}</span> - Latitude: <span>{{value.latitude}}</span> Longitude: <span>{{value.longitude}}</span></div> -->
     <!--<div map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw">-->
-        <ng-map center="37,-122" zoom="4">
-            <marker position="{{position.latitude}}, {{position.longitude}}" ng-repeat="position in positions"title="Hello World!"></marker>
+        <ng-map center="current-location" zoom="12">
+            <marker ng-repeat="(key, value) in userLocations" position="{{value.latitude}}, {{value.longitude}}" title="Hello World!"></marker>
         </ng-map>
     <!--</div>-->
   </div>
