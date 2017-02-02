@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+  </head>
+  <body class="container">
+    <br>
+    <div class="container col-lg-12">
+      <div ng-controller="registerLogInLogOut">
+        <form>
+          <div class="form-group">
+            <input type="text" ng-model="username" placeholder="username">
+            <input type="password" ng-model="password" placeholder="password">
+            <button class="btn btn-action" type="submit" ng-click="register()" ng-show="!loggedIn">Sign up</button>
+            <button class="btn btn-default" type="submit" ng-click="logIn()" ng-show="!loggedIn">Login</button>
+            <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
+            <br>
+            <div>{{badLogin}}</div>
+            <div>{{badLogin}}</div>
+          </div>
+        </form>
+      </div>
+      <div ng-controller="initializeMap">
+        <ng-map center="current-location" zoom="12">
+          <marker ng-repeat="(key, value) in userLocations" position="{{value.latitude}}, {{value.longitude}}" title="Hello World!"></marker>
+        </ng-map>
+      </div>
+      <div ng-controller="watchCurrentUserLocation"></div>
+    </div>
+    <!-- load the dependencies -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw"></script>
+    <!-- load the app scripts -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/config.js"></script>
+    <script src="scripts/services/factory.js"></script>
+    <script src="scripts/services/run.js"></script>
+    <script src="scripts/controllers/registerLoginLogout.js"></script>
+    <script src="scripts/controllers/initializeMap.js"></script>
+    <script src="scripts/controllers/watchCurrentLocation.js"></script>
+  </body>
+</html>
