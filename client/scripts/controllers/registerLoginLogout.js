@@ -7,7 +7,6 @@ angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $
         username: $scope.email.slice(0, $scope.email.indexOf('@')),
         email: $scope.email,
       });
-      //broadcast the newly created username so we can use it everywhere in our app
     })
     register.catch(function(error) {
       console.log(error.message);
