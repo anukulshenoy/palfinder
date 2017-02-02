@@ -7,6 +7,7 @@ angular.module('myApp').controller('watchCurrentUserLocation', function($rootSco
     $scope.userId = data; 
   });
 
+
   var success = function(response) {
     console.log('success! ', response.coords);
     databaseAndAuth.database.ref('users/' + $scope.userId + '/coordinates').update({

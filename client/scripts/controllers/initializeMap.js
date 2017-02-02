@@ -10,13 +10,19 @@ angular.module('myApp').controller('initializeMap', function($scope, databaseAnd
     $scope.$apply();
   });
 
-  $scope.$on('user:deleted', function(event, data) {
-    console.log('user removed');
-    //delete the scope data for user that was removed from the database
-    delete $scope.userLocations[data[0]];
-    //apply the change so corresponding map marker can be removed
+  //on logout remove all map markers
+  $scope.$on('user:loggedOut', function(event, data) {
+    $scope.userLocations = undefined; 
     $scope.$apply();
   });
+
+  // $scope.$on('user:deleted', function(event, data) {
+  //   console.log('user removed');
+  //   //delete the scope data for user that was removed from the database
+  //   delete $scope.userLocations[data[0]];
+  //   //apply the change so corresponding map marker can be removed
+  //   $scope.$apply();
+  // });
 
   NgMap.getMap().then(function(map) {
   });

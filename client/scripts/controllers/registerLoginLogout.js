@@ -26,7 +26,17 @@ angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $
   };
 
   $scope.logOut = function() {
-    databaseAndAuth.auth.signOut();
+    //on logout remove the user's coordinates from database
+    var logout = databaseAndAuth.database.ref('users/' + $scope.userId + '/coordinates').update({
+      latitude: '',
+      longitude: ''
+    });
+    //then sign them out
+    logout.then(function(){
+      $rootScope.$broadcast('user:loggedOut', '');
+      databaseAndAuth.auth.signOut();
+      console.log('user logged out: ', $scope.userId);
+    });
   };
 
   //listen for authentication state change (user logged in or logged out)
@@ -35,6 +45,9 @@ angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $
       //broadcast the unique user id so it can watchCurrentLocation controller
       //can update the database with the most recent location
       $rootScope.$broadcast('user:id', databaseUser.uid);
+      //attach the current user ID to scope so it can be used in logout to remove
+      //the user's coordinates
+      $scope.userId = databaseUser.uid
       //show logout button on homepage
       $scope.loggedIn = true;
       $scope.$apply();
