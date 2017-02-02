@@ -3,9 +3,9 @@ angular.module('myApp').controller('initializeMap', function($scope, databaseAnd
   $scope.userLocations = databaseAndAuth.users;
   //listen for any changes in user location (executed in app.run above)
   $scope.$on('user:updatedOrAdded', function(event, data) {
-    console.log('user added or updated');
     //apply the change only to the user that was updated/added/removed
     $scope.userLocations[data[0]] = data[1];
+    console.log('user added or updated', $scope.userLocations);
     //apply the change so map markers can be updated
     $scope.$apply();
   });

@@ -1,19 +1,18 @@
 //watch for current user location
 angular.module('myApp').controller('watchCurrentUserLocation', function($rootScope, $scope, databaseAndAuth) {
-  //TODO: on sucesssful location update send it do the databse
+  //when we get unique user id (upon login or page refresh with a user currently loged in)
+  //we attach the unique id to scope, so later we can use to update the database when 
+  //html5 geolocation successfuly finds the user location (see below)
   $scope.$on('user:id', function(event, data) {
     $scope.userId = data; 
   });
 
   var success = function(response) {
     console.log('success! ', response.coords);
-    //$window.coordinates = response.coords;
-
     databaseAndAuth.database.ref('users/' + $scope.userId + '/coordinates').update({
-        latitude: response.coords.latitude,
-        longitude: response.coords.longitude
-      });
-    
+      latitude: response.coords.latitude,
+      longitude: response.coords.longitude
+    });
   };
   var error = function(item) {
     console.log('error! ', item);

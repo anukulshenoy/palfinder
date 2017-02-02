@@ -24,7 +24,7 @@
       </div>
       <div ng-controller="initializeMap">
         <ng-map center="current-location" zoom="12">
-          <marker ng-repeat="(key, value) in userLocations" position="{{value.latitude}}, {{value.longitude}}" title="Hello World!"></marker>
+          <marker ng-repeat="(key, value) in userLocations" position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" title="Hello World!"></marker>
         </ng-map>
       </div>
       <div ng-controller="watchCurrentUserLocation"></div>

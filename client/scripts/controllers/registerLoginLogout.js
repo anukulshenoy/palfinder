@@ -16,12 +16,10 @@ angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $
 
   $scope.logIn = function() {
     var login = databaseAndAuth.auth.signInWithEmailAndPassword($scope.email, $scope.password);
-
     login.then(function(user) {
       $scope.email = '';
       $scope.password = '';
     });
-
     login.catch(function(error) {
       console.log(error.message);
       $scope.badLogin = error.message + ' If you don\'t have an account, please sign up!'
