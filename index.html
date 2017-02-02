@@ -4,28 +4,55 @@
     <link href="style.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
 </head>
-<body ng-controller="controllerOne">
+<body class="container">
+<br>
+<div class="container col-lg-12">
+ <div ng-controller="registerLogInLogOut"> 
+    <form>
+      <div class="form-group">
+        <input type="text" ng-model="username" placeholder="username">
+        <input type="password" ng-model="password" placeholder="password">
+        <button class="btn btn-action" type="submit" ng-click="register()" ng-show="!loggedIn">Sign up</button>
+        <button class="btn btn-default" type="submit" ng-click="logIn()" ng-show="!loggedIn">Login</button>
+        <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
+        <br>
+        <div>{{badLogin}}</div>
+        <div>{{badLogin}}</div>
+      </div>
+    </form>
+  </div>
+<!--  
+  <div ng-controller="logInExistingUser"> 
+    <form>
+      <div class="form-group">
+        <input type="text" ng-model="existingUser" placeholder="username">
+        <input type="text" ng-model="existingUserPassword" placeholder="password">
+        <button class="btn btn-primary" type="submit" ng-click="signIn()">Login</button>
+      </div>
+    </form>
+  </div>
 
-<h2>Signup</h2>
-<input type="text" ng-model="username" placeholder="username">
-<input type="text" ng-model="password" placeholder="password">
-<button type="submit" ng-click="register()">Sign up</button>
-<h2>Login</h2>
-<input type="text" ng-model="existingUser" placeholder="username">
-<input type="text" ng-model="existingUserPassword" placeholder="password">
-<button type="submit" ng-click="signIn()">Login</button>
-<h2>Add some data</h2>
-<label>Latitude:</label>
-<input type="text" ng-model="coordinates.latitude">
-<label>Longitude:</label>
-<input type="text" ng-model="coordinates.longitude">
-<button type="submit" ng-click="writeUserData()">Submit</button>
-<!--<div map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw">-->
-    <ng-map center="37,-122" zoom="4">
-        <marker position="{{position.latitude}}, {{position.longitude}}" ng-repeat="position in positions"title="Hello World!"></marker>
-    </ng-map>
-<!--</div>-->
+  <div ng-controller="manuallyAddCoordinates"> 
+    <form>
+      <input type="text" ng-model="coordinates.latitude" placeholder="latitude">
+      <input type="text" ng-model="coordinates.longitude" placeholder="longitude">
+      <button class="btn btn-primary" type="submit" ng-click="writeUserData()">Submit</button>
+    </form>
+  </div> -->
+
+  <div ng-controller="initializeMap">
+    <!--<div map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw">-->
+        <ng-map center="37,-122" zoom="4">
+            <marker position="{{position.latitude}}, {{position.longitude}}" ng-repeat="position in positions"title="Hello World!"></marker>
+        </ng-map>
+    <!--</div>-->
+  </div>
+
+  <div ng-controller="watchCurrentUserLocation"></div>
+
+</div>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
@@ -38,3 +65,4 @@
         <!--async defer></script>-->
 </body>
 </html>
+
