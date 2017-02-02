@@ -11,7 +11,7 @@
       <div ng-controller="registerLogInLogOut">
         <form>
           <div class="form-group">
-            <input type="text" ng-model="username" placeholder="username">
+            <input type="text" ng-model="email" placeholder="email">
             <input type="password" ng-model="password" placeholder="password">
             <button class="btn btn-action" type="submit" ng-click="register()" ng-show="!loggedIn">Sign up</button>
             <button class="btn btn-default" type="submit" ng-click="logIn()" ng-show="!loggedIn">Login</button>
@@ -33,9 +33,9 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
-    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-    <script src="bower_components/ngGeolocation/ngGeolocation.min.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw"></script>
     <!-- load the app scripts -->
     <script src="scripts/app.js"></script>

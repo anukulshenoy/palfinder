@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "firebase": "*"
+    "firebase": "*",
+    "jsdoc": "^3.4.3"
   },
   "dependencies": {
     "express": "^4.14.1"

@@ -1,16 +1,24 @@
-angular.module('myApp').controller('registerLogInLogOut', function($scope, databaseAndAuth) {
+angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $scope, databaseAndAuth) {
   $scope.register = function() {
-    var register = databaseAndAuth.auth.createUserWithEmailAndPassword($scope.username, $scope.password);
+    var register = databaseAndAuth.auth.createUserWithEmailAndPassword($scope.email, $scope.password);
+    //add user to the database so we can add/update their locaion as it's being montiored
+    register.then(function(user) {
+      databaseAndAuth.database.ref('users/' + user.uid).set({
+        username: $scope.email.slice(0, $scope.email.indexOf('@')),
+        email: $scope.email,
+      });
+      //broadcast the newly created username so we can use it everywhere in our app
+    })
     register.catch(function(error) {
       console.log(error.message);
     });
   };
 
   $scope.logIn = function() {
-    var login = databaseAndAuth.auth.signInWithEmailAndPassword($scope.username, $scope.password);
+    var login = databaseAndAuth.auth.signInWithEmailAndPassword($scope.email, $scope.password);
 
-    login.then(function() {
-      $scope.username = '';
+    login.then(function(user) {
+      $scope.email = '';
       $scope.password = '';
     });
 
@@ -27,6 +35,9 @@ angular.module('myApp').controller('registerLogInLogOut', function($scope, datab
   //listen for authentication state change (user logged in or logged out)
   databaseAndAuth.auth.onAuthStateChanged(function(databaseUser) {
     if (databaseUser) {
+      //broadcast the unique user id so it can watchCurrentLocation controller
+      //can update the database with the most recent location
+      $rootScope.$broadcast('user:id', databaseUser.uid);
       //show logout button on homepage
       $scope.loggedIn = true;
       $scope.$apply();
