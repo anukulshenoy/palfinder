@@ -1,4 +1,4 @@
-angular.module('myApp').config(function($routeProvider, $httpProvider) {
+angular.module('myApp').config(function($routeProvider, $locationProvider, $httpProvider) {
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAhV8qputTImKp3Z5DwwpUmT8lyNRktCfc",
@@ -8,4 +8,20 @@ angular.module('myApp').config(function($routeProvider, $httpProvider) {
     messagingSenderId: "673459070337"
   };
   firebase.initializeApp(config);
+
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
+
+  $routeProvider
+  .when('/', {
+    templateUrl: '../../partials/pinButtons.html',
+    controller: 'chatterboxCtrl',
+  })
+  .when('/send-message', {
+    templateUrl: '../../partials/chatWindow.html',
+    controller: 'chatterboxCtrl',
+  });
+
 });

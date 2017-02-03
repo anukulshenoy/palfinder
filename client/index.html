@@ -24,10 +24,15 @@
     <script src="scripts/controllers/watchCurrentLocation.js"></script>
 
   </head>
+  <body>
+    
+      <div class="login" ng-controller="registerLogInLogOut">
+
   <body class="container col-sm-12">
     <br>
     <div class="container col-lg-12">
       <div ng-controller="registerLogInLogOut">
+
         <form>
           <div class="form-group">
             <input type="text" ng-model="email" placeholder="email">
@@ -40,6 +45,12 @@
           </div>
         </form>
       </div>
+      
+      <div ng-view></div>
+
+      <div ng-controller="initializeMap" style="height:100%">
+        <ng-map center="current-location" zoom="12" default-style="false">
+          <marker ng-repeat="(key, value) in userLocations" position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" title="Hello World!"></marker>
       <div ng-controller="initializeMap" class="map-wrapper">
         <ng-map class="myMap" center="current-location" zoom="14" default-style="false">
         <directions suppress-markers="true"></directions>
@@ -51,8 +62,33 @@
           </div>
         </ng-map>
       </div>
+
       <div ng-controller="watchCurrentUserLocation"></div>
+
+
+      <div ng-controller="chatterboxCtrl" ng-init="fetchMessage()"></div>
+      
+    
+    <!-- load the dependencies -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw"></script>
+    <!-- load the app scripts -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/config.js"></script>
+    <script src="scripts/services/factoryDatabaseAndAuth.js"></script>
+    <script src="scripts/services/factoryRunListeners.js"></script>
+    <script src="scripts/controllers/registerLoginLogout.js"></script>
+    <script src="scripts/controllers/initializeMap.js"></script>
+    <script src="scripts/controllers/watchCurrentLocation.js"></script>
+    <script src="scripts/controllers/chatterbox.js"></script>
+
     </div>
     
+
   </body>
 </html>
