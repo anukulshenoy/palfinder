@@ -1,4 +1,4 @@
-angular.module('myApp').controller('chatterboxCtrl', function($scope, $location) {
+angular.module('myApp').controller('chatterboxCtrl', function($scope, $location, databaseAndAuth) {
   console.log('inside chatterboxCtrl');
 
   var database = firebase.database();
@@ -6,21 +6,21 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $location)
   $scope.messageArray = [];
   
   $scope.sendMessage = function(userId, text) {
- 
-    chatId = Math.floor((Math.random() * 10000000000000) + 1);
-    text = $scope.text;
-    var milliseconds = +new Date(Date());
+    var chatEmail = databaseAndAuth.auth.currentUser.email;
+    var chatUsername = chatEmail.slice(0, chatEmail.indexOf('@'));
+    
+    var chatId = +new Date(Date()); //use time in milliseconds for chatId
 
-    database.ref('chats/' + milliseconds).set({
-      username: 'Hanyen',
-      text: text,
+    database.ref('chats/' + chatId).set({
+      username: chatUsername,
+      text: $scope.text,
       createdAt: Date()
     });
 
   };
 
   $scope.fetchMessage = function() {
-
+    // $scope.chatUsername = databaseAndAuth.auth.currentUser.email.slice(0, databaseAndAuth.auth.currentUser.email.indexOf('@') );
     //a helper function to reverse the order of chats
     function reverseForIn(obj, func) {
       var arr = [];
@@ -34,17 +34,15 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $location)
 
     var ref = database.ref('chats');
     
-    ref.orderByChild('text').on('value', function(chat) {
-  
+    ref.limitToLast(9).on('value', function(chat) {
       var newArray = [];
       reverseForIn(chat.val(), function(key){ newArray.push(this[key]); });
       $scope.messageArray = newArray;
-
     });
 
   };
 
-  $scope.openLink = function(location) {
+  $scope.showPartial = function(location) {
     $location.path(location);
   }
 

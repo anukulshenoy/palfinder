@@ -25,6 +25,10 @@ ng-map {
   width: 100%;
 }
 
+.panel-body {
+  padding: 5px 15px;
+}
+
 .panel-transparent {
     background: none;
 }
