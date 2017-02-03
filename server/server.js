@@ -12,6 +12,8 @@ var options = {
 app.use('/bower_components', express.static(path.join(__dirname, '/../client/bower_components')));
 app.use('/scripts', express.static(path.join(__dirname, '/../client/scripts')));
 app.use('/styles', express.static(path.join(__dirname, '/../client/styles')));
+app.use('/partials', express.static(path.join(__dirname, '/../client/partials')));
+app.use('/images', express.static(path.join(__dirname, '/../client/images')));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
