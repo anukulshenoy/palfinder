@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
   <body class="container">
     <br>
@@ -22,7 +23,7 @@
         </form>
       </div>
       <div ng-controller="initializeMap">
-        <ng-map center="current-location" zoom="12">
+        <ng-map center="current-location" zoom="12" default-style="false">
           <marker ng-repeat="(key, value) in userLocations" position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" title="Hello World!"></marker>
         </ng-map>
       </div>
