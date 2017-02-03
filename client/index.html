@@ -3,32 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title></title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="styles/style.css">
-  </head>
-  <body class="container">
-    <br>
-    <div class="container col-lg-12">
-      <div ng-controller="registerLogInLogOut">
-        <form>
-          <div class="form-group">
-            <input type="text" ng-model="email" placeholder="email">
-            <input type="password" ng-model="password" placeholder="password">
-            <button class="btn btn-action" type="submit" ng-click="register()" ng-show="!loggedIn">Sign up</button>
-            <button class="btn btn-default" type="submit" ng-click="logIn()" ng-show="!loggedIn">Login</button>
-            <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
-            <br>
-            <div>{{badLogin}}</div>
-          </div>
-        </form>
-      </div>
-      <div ng-controller="initializeMap">
-        <ng-map class="container" center="current-location" zoom="12" default-style="false">
-          <marker ng-repeat="(key, value) in userLocations" position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" title="Hello World!"></marker>
-        </ng-map>
-      </div>
-      <div ng-controller="watchCurrentUserLocation"></div>
-    </div>
     <!-- load the dependencies -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -45,5 +22,37 @@
     <script src="scripts/controllers/registerLoginLogout.js"></script>
     <script src="scripts/controllers/initializeMap.js"></script>
     <script src="scripts/controllers/watchCurrentLocation.js"></script>
+
+  </head>
+  <body class="container col-sm-12">
+    <br>
+    <div class="container col-lg-12">
+      <div ng-controller="registerLogInLogOut">
+        <form>
+          <div class="form-group">
+            <input type="text" ng-model="email" placeholder="email">
+            <input type="password" ng-model="password" placeholder="password">
+            <button class="btn btn-action" type="submit" ng-click="register()" ng-show="!loggedIn">Sign up</button>
+            <button class="btn btn-default" type="submit" ng-click="logIn()" ng-show="!loggedIn">Login</button>
+            <button id="btnLogout" class="btn btn-action" type="submit" ng-click="logOut()" ng-show="loggedIn">Logout</button>
+            <br>
+            <div>{{badLogin}}</div>
+          </div>
+        </form>
+      </div>
+      <div ng-controller="initializeMap" class="map-wrapper">
+        <ng-map class="myMap" center="current-location" zoom="14" default-style="false">
+        <directions suppress-markers="true"></directions>
+          <div ng-repeat="(key, value) in userLocations" >
+          <marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}"></marker>
+          <custom-marker position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}">
+            <p class="user-label">{{value.username}}</p>
+          </custom-marker>
+          </div>
+        </ng-map>
+      </div>
+      <div ng-controller="watchCurrentUserLocation"></div>
+    </div>
+    
   </body>
 </html>

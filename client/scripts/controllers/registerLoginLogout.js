@@ -39,9 +39,10 @@ angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $
   //listen for authentication state change (user logged in or logged out)
   databaseAndAuth.auth.onAuthStateChanged(function(databaseUser) {
     if (databaseUser) {
-      //this is the only database listener that triggers after logout/login cycle without page refresh
+      //run databse listener every time there is a login/logout/page refresh
       runListeners.childChanged();
       runListeners.childAdded();
+      runListeners.childRemoved();
       //broadcast the unique user id so it can watchCurrentLocation controller
       //can update the database with the most recent location
       $rootScope.$broadcast('user:logIn', databaseUser.uid);
