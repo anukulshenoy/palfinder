@@ -1,3 +1,4 @@
+
 html,
 body {
   height:100%; 
@@ -75,4 +76,23 @@ button .sendMessage {
 
 .input-field textarea {
   width: 90%;
+  
+.user-label {
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.map-wrapper {
+  position: relative;
+  height: calc(100vh - 4em - 64px);
+}
+
+.myMap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
