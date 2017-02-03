@@ -6,9 +6,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
-  <body class="container">
-    <br>
-    <div class="container col-lg-12">
+  <body>
+    
       <div ng-controller="registerLogInLogOut">
         <form>
           <div class="form-group">
@@ -22,13 +21,17 @@
           </div>
         </form>
       </div>
-      <div ng-controller="initializeMap">
-        <ng-map class="container" center="current-location" zoom="12" default-style="false">
+      
+      <div ng-view></div>
+
+      <div ng-controller="initializeMap" style="height:100%">
+        <ng-map center="current-location" zoom="12" default-style="false">
           <marker ng-repeat="(key, value) in userLocations" position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" title="Hello World!"></marker>
         </ng-map>
       </div>
+
       <div ng-controller="watchCurrentUserLocation"></div>
-    </div>
+    
     <!-- load the dependencies -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>

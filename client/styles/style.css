@@ -1,15 +1,64 @@
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height:100%; 
+  width:100%;
+  padding:0;
+  margin:0;
 }
 #map {
-    height: 100%;
+  height:100%; 
+  width: 100%;
 }
 
 ng-map {
-  display:block; 
-  width:200px; 
-  height:650px
+  height:100%; 
+  width: 100%; 
+}
+
+/*<!-- Make the panel transparent http://stackoverflow.com/questions/24855438/transparent-bootstrap-panel -->*/
+.panel {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.panel-transparent {
+    background: none;
+}
+
+.icon-message {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+/*http://www.iconarchive.com/show/bubble-circle-2-icons-by-scafer31000/Message-icon.html*/
+button .sendMessage {
+  background: transparent;
+  background-image: url(../images/icon-message.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  border: none;
+}
+
+.chat-window {
+  text-align: left;
+  height: 400px;
+  background-color: #dcdcdc;
+}
+
+.input-field {
+  float:bottom;
+}
+
+.input-field textarea {
+  width: 90%;
 }
