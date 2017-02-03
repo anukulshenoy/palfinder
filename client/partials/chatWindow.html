@@ -1,0 +1,27 @@
+<div class="panel" ng-controller="chatterboxCtrl">
+
+<!-- {{fetchMessage()}} -->
+
+  <div class="panel-body chat-window" ng-init="fetchMessage()">
+    <div style="height: 80%">
+      <div ng-repeat="message in messageArray" style="margin: 10px 0;">
+        <b>{{message.username}}</b>: {{message.text}}
+      </div>
+    </div>  
+    
+    <div class="input-field">
+      <form>
+        <textarea rows="1" ng-model="text"></textarea><br/>
+        <button type="submit" ng-click="sendMessage()">Send Message</button>
+        <a href="/">Close</a> | 
+        <a href="#" ng-click="fetchMessage()">Fetch</a>
+      </form>
+    <div>
+
+  </div>
+
+<!-- <pre>
+{{text}}
+</pre> -->
+
+</div>
