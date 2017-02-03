@@ -8,7 +8,7 @@
   </head>
   <body>
     
-      <div ng-controller="registerLogInLogOut">
+      <div class="login" ng-controller="registerLogInLogOut">
         <form>
           <div class="form-group">
             <input type="text" ng-model="email" placeholder="email">
@@ -31,6 +31,9 @@
       </div>
 
       <div ng-controller="watchCurrentUserLocation"></div>
+
+      <div ng-controller="chatterboxCtrl" ng-init="fetchMessage()"></div>
+      
     
     <!-- load the dependencies -->
     <script src="bower_components/angular/angular.js"></script>

@@ -1,8 +1,6 @@
-<div class="panel" ng-controller="chatterboxCtrl">
+<div class="panel" ng-controller="chatterboxCtrl" ng-init="fetchMessage()">
 
-<!-- {{fetchMessage()}} -->
-
-  <div class="panel-body chat-window" ng-init="fetchMessage()">
+  <div class="panel-body chat-window" >
     <div style="height: 80%">
       <div ng-repeat="message in messageArray" style="margin: 10px 0;">
         <b>{{message.username}}</b>: {{message.text}}

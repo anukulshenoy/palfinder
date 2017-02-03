@@ -20,7 +20,6 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $location,
   };
 
   $scope.fetchMessage = function() {
-    // $scope.chatUsername = databaseAndAuth.auth.currentUser.email.slice(0, databaseAndAuth.auth.currentUser.email.indexOf('@') );
     //a helper function to reverse the order of chats
     function reverseForIn(obj, func) {
       var arr = [];

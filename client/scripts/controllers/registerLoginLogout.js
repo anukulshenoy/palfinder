@@ -1,4 +1,4 @@
-angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $scope, databaseAndAuth, runListeners) {
+angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $scope, $location, databaseAndAuth, runListeners) {
   $scope.register = function() {
     var register = databaseAndAuth.auth.createUserWithEmailAndPassword($scope.email, $scope.password);
     //add user to the database so we can add/update their locaion as it's being montiored
@@ -36,6 +36,9 @@ angular.module('myApp').controller('registerLogInLogOut', function($rootScope, $
       console.log('user logged out: ', $scope.userId);
     });
   };
+  $scope.showPartial = function(location) {
+    $location.path(location);
+  }
   //listen for authentication state change (user logged in or logged out)
   databaseAndAuth.auth.onAuthStateChanged(function(databaseUser) {
     if (databaseUser) {

@@ -42,6 +42,15 @@ ng-map {
   width: 90%;
 }
 
+.login {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 10px 0 0 10px;
+  width: 100%;
+  background-color: #dcdcdc;
+}
+
 /*http://www.iconarchive.com/show/bubble-circle-2-icons-by-scafer31000/Message-icon.html*/
 button .sendMessage {
   background: transparent;
