@@ -23,7 +23,7 @@
         </form>
       </div>
       <div ng-controller="initializeMap">
-        <ng-map center="current-location" zoom="12" default-style="false">
+        <ng-map class="container" center="current-location" zoom="12" default-style="false">
           <marker ng-repeat="(key, value) in userLocations" position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" title="Hello World!"></marker>
         </ng-map>
       </div>
