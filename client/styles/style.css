@@ -1,19 +1,35 @@
-html,
+/*html,
 body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-#map {
+}*/
+/*#map {
     height: 100%;
 }
 
 ng-map {
   display:block; 
   width:200px; 
-  height:650px
+  height: 100%;
+}*/
+
+p {
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
-h6 {
-  margin-bottom: 25px;
+.map-wrapper {
+  position: relative;
+  height: calc(100vh - 4em - 64px);
+}
+
+.myMap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
