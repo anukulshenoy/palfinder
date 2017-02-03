@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
   <body class="container">
     <br>
@@ -22,7 +23,7 @@
         </form>
       </div>
       <div ng-controller="initializeMap">
-        <ng-map center="current-location" zoom="12">
+        <ng-map class="container" center="current-location" zoom="12" default-style="false">
           <marker ng-repeat="(key, value) in userLocations" position="{{value.coordinates.latitude}}, {{value.coordinates.longitude}}" title="Hello World!"></marker>
         </ng-map>
       </div>
@@ -35,12 +36,12 @@
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
     <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1hCEtRUrS6jPYMMHeSBoyaZDiTDyouyw"></script>
     <!-- load the app scripts -->
     <script src="scripts/app.js"></script>
     <script src="scripts/services/config.js"></script>
-    <script src="scripts/services/factory.js"></script>
-    <script src="scripts/services/run.js"></script>
+    <script src="scripts/services/factoryDatabaseAndAuth.js"></script>
+    <script src="scripts/services/factoryRunListeners.js"></script>
     <script src="scripts/controllers/registerLoginLogout.js"></script>
     <script src="scripts/controllers/initializeMap.js"></script>
     <script src="scripts/controllers/watchCurrentLocation.js"></script>

@@ -1,20 +1,24 @@
 var express = require('express');
 var path = require('path');
+var https = require('https');
 var app = express();
+var fs = require('fs');
 
-app.use('/bower_components', express.static(path.join(__dirname, '/bower_components')));
-app.use('/', express.static(path.join(__dirname, '/')));
+var options = {
+  cert: fs.readFileSync('client-cert.pem'),
+  key: fs.readFileSync('client-key.pem')
+};
 
-app.get('/index2', function (req, res) {
-  res.sendFile(path.join(__dirname, '/index2.html'));
-})
+app.use('/bower_components', express.static(path.join(__dirname, '/../client/bower_components')));
+app.use('/scripts', express.static(path.join(__dirname, '/../client/scripts')));
+app.use('/styles', express.static(path.join(__dirname, '/../client/styles')));
 
 app.get('/', function (req, res) {
-  res.redirect('/index2');
+  res.sendFile(path.join(__dirname, '/../client/index.html'));
 })
 
+var server = https.createServer(options, app);
 
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+server.listen(3000, function () {
+  console.log('Server listening on port 3000!')
 })
