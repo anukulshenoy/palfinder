@@ -76,7 +76,8 @@ button .sendMessage {
 
 .input-field textarea {
   width: 90%;
-  
+}
+
 .user-label {
   margin-bottom: 30px;
   font-size: 20px;
