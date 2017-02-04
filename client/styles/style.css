@@ -78,6 +78,13 @@ button .sendMessage {
   width: 90%;
 }
 
+.chatCloseButton {
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  padding: 10px 20px 0 0;
+}
+
 .user-label {
   margin-bottom: 30px;
   font-size: 20px;

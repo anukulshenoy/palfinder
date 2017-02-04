@@ -3,7 +3,7 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $location,
 
   var database = firebase.database();
 
-  $scope.messageArray = [];
+  $scope.messageObj = {};
   
   $scope.sendMessage = function(userId, text) {
     var chatEmail = databaseAndAuth.auth.currentUser.email;
@@ -17,26 +17,15 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $location,
       createdAt: Date()
     });
 
+    $scope.text = '';
   };
 
   $scope.fetchMessage = function() {
-    //a helper function to reverse the order of chats
-    function reverseForIn(obj, func) {
-      var arr = [];
-      for (var key in obj) {
-        arr.push(key);
-      }
-      for (var i=arr.length-1; i>=0; i--) {
-        func.call(obj, arr[i]);
-      }
-    }
-
+    
     var ref = database.ref('chats');
     
     ref.limitToLast(9).on('value', function(chat) {
-      var newArray = [];
-      reverseForIn(chat.val(), function(key){ newArray.push(this[key]); });
-      $scope.messageArray = newArray;
+      $scope.messageObj = chat.val();
     });
 
   };
