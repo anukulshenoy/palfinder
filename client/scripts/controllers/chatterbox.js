@@ -27,6 +27,8 @@ angular.module('myApp').controller('chatterboxCtrl', function($scope, $location,
     ref.limitToLast(9).on('value', function(chat) {
       $scope.messageObj = chat.val();
       $scope.$apply();
+      $rootScope.isAllowed = true;
+      $location.path('/map');
     });
 
   };
