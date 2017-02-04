@@ -47,9 +47,15 @@ ng-map {
   position: absolute;
   top: 0;
   z-index: 1;
-  padding: 10px 0 0 10px;
+  padding: 10px 10px 0 10px;
   width: 100%;
-  background-color: #dcdcdc;
+  text-align: right;
+}
+
+.login input {
+  height: 40px; 
+  padding-left: 10px;
+  margin-right: 5px;
 }
 
 /*http://www.iconarchive.com/show/bubble-circle-2-icons-by-scafer31000/Message-icon.html*/
